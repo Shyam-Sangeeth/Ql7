@@ -4,11 +4,11 @@
     package="ql.cev.ql9">
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-feature android:name="android.hardware.camera" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <application
-        android:name="ql.cev.ql9.QuassoLiberum"
+        android:name=".QuassoLiberum"
         android:hardwareAccelerated="false"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
@@ -17,8 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
+        <activity android:name=".TechCulSel" android:screenOrientation="portrait" tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name="ql.cev.ql9.SplashActivity"
+            android:name=".SplashActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity">
@@ -28,60 +29,60 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="ql.cev.ql9.MainActivity"
+            android:name=".MainActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name="ql.cev.ql9.CompetitionActivity"
+            android:name=".CompetitionActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name="ql.cev.ql9.PostActivity"
+            android:name=".PostActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name="ql.cev.ql9.CevCornerActivity"
+            android:name=".CevCornerActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name="ql.cev.ql9.WorkshopActivity"
+            android:name=".WorkshopActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name="ql.cev.ql9.ProshowActivity"
+            android:name=".ProshowActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name="ql.cev.ql9.ResultActivity"
+            android:name=".ResultActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name="ql.cev.ql9.ScheduleActivity"
+            android:name=".ScheduleActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name="ql.cev.ql9.RegisterActivity"
+            android:name=".RegisterActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name="ql.cev.ql9.LoginActivity"
+            android:name=".LoginActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <service
-            android:name="ql.cev.ql9.MyFirebaseMessagingService"
+            android:name=".MyFirebaseMessagingService"
             android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
         </service>
-        <service android:name="ql.cev.ql9.MyFirebaseInstanceIDService"
+        <service
+            android:name=".MyFirebaseInstanceIDService"
             tools:ignore="ExportedService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-        <activity android:name="ql.cev.ql9.VideoActivity" />
+        <activity android:name=".VideoActivity" />
     </application>
-
 </manifest>
