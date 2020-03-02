@@ -5,13 +5,10 @@
     android:background="@drawable/app_background"
     android:layout_height="match_parent"
     tools:context="ql.cev.ql9.PostActivity">
-
-
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -23,17 +20,14 @@
             android:layout_weight=".1"
             android:layout_margin="10dp"
             android:textColor="@color/cardview_light_background"
-            android:text="POST YOUR IMAGE"
-            />
-
+            android:text="@string/post_your_image" />
         <ImageButton
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/app_background"
             android:id="@+id/imageBtn"
             android:layout_margin="10dp"
-            android:src="@drawable/select_image"
-            android:layout_alignParentTop="true"
+            android:src="@drawable/addimage"
             android:adjustViewBounds="true"
             android:scaleType="fitXY"
             tools:ignore="ContentDescription" />
@@ -45,28 +39,19 @@
             android:maxLength="2000"
             android:layout_margin="10dp"
             android:background="@color/cardview_light_background"
-            android:hint="Write something...."
+            android:hint="@string/write_something"
             android:textColor="#000"
             android:id="@+id/textDesc"
-            android:layout_below="@id/imageBtn"
             android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp" />
-
-
+            android:layout_marginRight="5dp"
+            android:autofillHints="" />
         <Button
             android:id="@+id/postBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:layout_margin="10dp"
-            android:text="POST "
-            android:layout_alignParentBottom="true"
+            android:text="@string/post"
             android:textColor="@color/nav_text"
-            android:textStyle="bold"
-            />
-
+            android:textStyle="bold" />
 </LinearLayout>
-
-
 </ScrollView>
-

@@ -1,5 +1,6 @@
 package ql.cev.ql9.Fragments;
 
+import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,12 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
-
 import ql.cev.ql9.CevCornerActivity;
 import ql.cev.ql9.CompetitionActivity;
 import ql.cev.ql9.CostumGridAdapter;
@@ -27,11 +25,8 @@ import ql.cev.ql9.WorkshopActivity;
 import technolifestyle.com.imageslider.FlipperLayout;
 import technolifestyle.com.imageslider.FlipperView;
 
-
 public class HomeFragment extends Fragment {
     FlipperLayout flpr;
-    private ImageView imageView;
-    private GridView grid;
     private TextView counDown;
     private String[] web = {
             "COMPETITIONS",
@@ -55,12 +50,10 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_home,container,false);
-       // CostumGridAdapter adapter = new CostumGridAdapter(getActivity(), web, imageId);
-     grid=(GridView)view.findViewById(R.id.grid);
-     //imageView=(ImageView)view.findViewById(R.id.ql);
-     flpr=(FlipperLayout)view.findViewById(R.id.flp);
-     setLayout();
-     counDown=(TextView)view.findViewById(R.id.counterv);
+        GridView grid = view.findViewById(R.id.grid);
+        flpr= view.findViewById(R.id.flp);
+        setLayout();
+        counDown= view.findViewById(R.id.counterv);
         Calendar start_calendar = Calendar.getInstance();
         Calendar end_calendar = Calendar.getInstance();
         end_calendar.set(2019, 2, 21);
@@ -68,22 +61,19 @@ public class HomeFragment extends Fragment {
         long end_millis = end_calendar.getTimeInMillis(); //get the end time in milliseconds
         long total_millis = (end_millis - start_millis); //total time in milliseconds
         CountDownTimer cdt = new CountDownTimer(total_millis, 1000) {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onTick(long millisUntilFinished) {
                 long days = TimeUnit.MILLISECONDS.toDays(millisUntilFinished);
                 millisUntilFinished -= TimeUnit.DAYS.toMillis(days);
-
                 long hours = TimeUnit.MILLISECONDS.toHours(millisUntilFinished);
                 millisUntilFinished -= TimeUnit.HOURS.toMillis(hours);
-
                 long minutes = TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished);
                 millisUntilFinished -= TimeUnit.MINUTES.toMillis(minutes);
-
                 long seconds = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished);
-
                 counDown.setText(days + " Days : "+ hours + " Hours : " + minutes + " Minutes : " + seconds+" Seconds"); //You can compute the millisUntilFinished on hours/minutes/seconds
             }
-
+            @SuppressLint("SetTextI18n")
             @Override
             public void onFinish() { counDown.setText("Break Free....CEV!");
             }
@@ -94,7 +84,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                //Toast.makeText(getActivity(), "You Clicked at " +web[+ position], Toast.LENGTH_SHORT).show();
                 if (position==0){
                     Intent intent=new Intent(getActivity(), CompetitionActivity.class);
                     startActivity(intent);
@@ -122,27 +111,22 @@ public class HomeFragment extends Fragment {
 
             }
         });
-
-
         return view;
     }
-
     private void setLayout() {
-        String url[]=new String[]{
+        String[] url =new String[]{
                 "https://drive.google.com/uc?id=1ukJWen2V4Ort0lZhjqXPPeokUPpC7dCG",
                 "https://drive.google.com/uc?id=1qJl6LplIufvO1D5eeDonCQwUdI97TH_V",
                 "https://drive.google.com/uc?id=1gPHKV4evVTaJHpa9VhK-1DEbOlY2KfXd",
                 "https://drive.google.com/uc?id=11X-5M6CQZx_SIAhqoS-ty8oPjp_wOo34",
                 "https://drive.google.com/uc?id=11kCph49vIB3N1gLCi40Hq_kXxJqoKbEd"
         };
-        int j=url.length;
         flpr.setScrollTimeInSec(2);
-        for (int i=0;i<4;++i){
+        for (String s : url) {
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                FlipperView view=new FlipperView(getContext());
-                view.setImageUrl(url[i]).setDescription(" ");
+                FlipperView view = new FlipperView(getContext());
+                view.setImageUrl(s).setDescription(" ");
                 flpr.addFlipperView(view);
-
             }
         }
     }

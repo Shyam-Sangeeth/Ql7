@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/app_background"
     tools:context="ql.cev.ql9.TechCulSel">
-
     <ImageView
         android:id="@+id/saptakselect"
         android:layout_width="match_parent"
@@ -24,7 +23,6 @@
         app:srcCompat="@drawable/saptak"
         tools:ignore="ContentDescription"
         android:tint="@drawable/ontouchcolourchange"/>
-
     <ImageView
         android:id="@+id/techfestselect"
         android:layout_width="match_parent"
@@ -58,7 +56,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ql9img"
         tools:ignore="ContentDescription" />
-
     <View
         android:id="@+id/divider"
         android:layout_width="409dp"

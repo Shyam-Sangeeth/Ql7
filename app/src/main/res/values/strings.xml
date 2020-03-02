@@ -19,4 +19,9 @@
     <string name="shyam_sangeeth">SHYAM SANGEETH</string>
     <string name="feel_free_to_contact_us">Feel Free to Contact Us</string>
     <string name="student_union">STUDENT UNION</string>
+    <string name="photo">Photo</string>
+    <string name="logout">Logout</string>
+    <string name="write_something">Write something....</string>
+    <string name="post">POST</string>
+    <string name="post_your_image">POST YOUR IMAGE</string>
 </resources>
