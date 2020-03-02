@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="ql.cev.ql9">
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <application
+        android:name="ql.cev.ql9.QuassoLiberum"
+        android:allowBackup="true"
+        android:hardwareAccelerated="false"
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@drawable/logo"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="ql.cev.ql9.SplashActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="fullSensor">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="ql.cev.ql9.MainActivity"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="ql.cev.ql9.CompetitionActivity"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="ql.cev.ql9.PostActivity"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="ql.cev.ql9.CevCornerActivity"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="ql.cev.ql9.WorkshopActivity"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="ql.cev.ql9.ProshowActivity"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="ql.cev.ql9.ResultActivity"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="ql.cev.ql9.ScheduleActivity"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="ql.cev.ql9.RegisterActivity"
+            android:screenOrientation="fullSensor" />
+        <activity
+            android:name="ql.cev.ql9.LoginActivity"
+            android:screenOrientation="fullSensor" />
+        <service
+            android:name="ql.cev.ql9.MyFirebaseMessagingService"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+        <service android:name="ql.cev.ql9.MyFirebaseInstanceIDService"
+            tools:ignore="ExportedService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <activity android:name="ql.cev.ql9.VideoActivity" />
+    </application>
+
+</manifest>
