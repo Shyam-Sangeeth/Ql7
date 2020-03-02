@@ -9,25 +9,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import ql.cev.ql9.R;
 
-
-
 public class AboutFragment extends Fragment {
-
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_about,container,false);
-
-        TextView t1,t2,t3;
-
-        t1=(TextView)view.findViewById(R.id.t1);
-        t2=(TextView)view.findViewById(R.id.t2);
-        t3=(TextView)view.findViewById(R.id.t3);
-
+        TextView t1,t2,t3,t4;
+        t1= view.findViewById(R.id.t1);
+        t2= view.findViewById(R.id.t2);
+        t3= view.findViewById(R.id.t3);
+        t4= view.findViewById(R.id.t4);
         t1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent();
@@ -52,6 +45,15 @@ public class AboutFragment extends Fragment {
                 intent.setAction(Intent.ACTION_VIEW);
                 intent.addCategory(Intent.CATEGORY_BROWSABLE);
                 intent.setData(Uri.parse("https://www.instagram.com/soorajpr98"));
+                startActivity(intent);
+            }
+        });
+        t4.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse("https://www.instagram.com/the__sorcerer__supreme/"));
                 startActivity(intent);
             }
         });

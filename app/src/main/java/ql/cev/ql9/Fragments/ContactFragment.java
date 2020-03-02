@@ -1,21 +1,21 @@
 package ql.cev.ql9.Fragments;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
-
+import android.widget.Toast;
 import java.util.ArrayList;
-
 import ql.cev.ql9.ContactAdapter;
 import ql.cev.ql9.ContactListModel;
 import ql.cev.ql9.R;
-
-
 
 public class ContactFragment extends Fragment{
     private String[] Positions = {
@@ -26,7 +26,7 @@ public class ContactFragment extends Fragment{
             "UUC",
             "FINE ARTS SEC.",
             "GEN. CAPTAIN",
-            "MAGAZINE EDITOR",
+            "STUDENT EDITOR",
             "",
             "CS",
             "CE",
@@ -37,62 +37,53 @@ public class ContactFragment extends Fragment{
             "MCA",
             "",
             "CHAIRMAN",
-            "GEN. CONVENOR",
             "TECHNICAL HEAD",
-            "CULTURAL HEAD",
-
+            "CULTURAL HEAD"
     } ;
     private String[] Names = {
-            "MINNU",
-            "KC ANAGHA CHANDRAN",
-            "SADIQUE",
-            "AISWARYA PV",
             "VARUN A",
-            "SREENATH TK",
-            "HATHIF BACKER",
-            "PRASOBH V",
+            "KAVYA N",
+            "AMAN BASIQUE SM",
+            "RAHANA",
+            "SANGEETH PS",
+            "RAMEES JABBAR",
+            "MOPHIN JOSEPH",
+            "AMAL",
             "ASSOCIATION SEC.",
-            "ARUN A",
-            "AMAL SUGUNAN",
-            "SYAM P S",
-            "SARATH C",
-            "ARJUN ANAND",
-            "AKSHAY RAMESH",
-            "HUSSAIN M K",
+            "NAJIL NIZARIN VB",
+            "UMMER MUNEESH",
+            "BIJOY MT",
+            "KAVYASREE O P",
+            "VISHNUPRASAD V",
+            "SANJAY MON V P",
+            "KRISHNA SURESH",
             "GENERAL CONVENORS",
-            "MINNU",
-            "SADIQUE",
-            "PREMJISHNU",
-            "SREENATH T K",
-
-
+            "VARUN A",
+            "SAFWAN CK",
+            "RAMEES JABBAR"
     } ;
     private String[] PhoneNumber = {
-            "9539118477",
-            "8921607895",
-            "9567604023",
-            "9846184887",
-            "9633223121",
-            "7025075850",
-            "9846145896",
-            "9539545050",
+            "7356209112",
+            "8078153898",
+            "8281683589",
+            "7025630569",
+            "9400416398",
+            "8589881320",
+            "8921292016",
+            "9207528508",
             "",
-            "8156827173",
-            "9061480073",
-            "9495774809",
-            "9539341278",
-            "9995286098",
-            "9846177910",
-            "8943966419",
+            "9037367280",
+            "7025009651",
+            "8089831565",
+            "7592871475",
+            "7034278642",
+            "9746523266",
+            "9188021328",
             "",
-            "9539118477",
-            "9567604023",
-            "9544001436 ",
-            "7025075850",
+            "7356209112",
+            "8891496748",
+            "8589881320"
     } ;
-
-
-
     private ArrayList<ContactListModel> ContactArray = new ArrayList<>();
     @Nullable
     @Override
@@ -100,14 +91,25 @@ public class ContactFragment extends Fragment{
         View view=inflater.inflate(R.layout.fragment_contact,container,false);
         setListData();
         Resources resources=getResources();
-        ListView listview =(ListView)view.findViewById(R.id.contact_list_view);
+        ListView listview = view.findViewById(R.id.contact_list_view);
         ContactAdapter contactAdapter=new ContactAdapter(getActivity(),ContactArray,resources);
-         listview.setAdapter(contactAdapter);
+        listview.setAdapter(contactAdapter);
+        listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if(!PhoneNumber[i].equals("")) {
+                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                    callIntent.setData(Uri.parse("tel:+91"+PhoneNumber[i]));
+                    startActivity(callIntent);
+                }
+                return false;
+            }
+        });
+        Toast.makeText(view.getContext(), "Long Click To Make Call!", Toast.LENGTH_SHORT).show();
         return view;
     }
-
     private void setListData() {
-        for (int i=0;i<21;i++){
+        for (int i=0;i<Names.length;i++){
             final ContactListModel contactListModel=new ContactListModel();
             contactListModel.setPosition(Positions[i]);
             contactListModel.setName(Names[i]);
@@ -115,5 +117,4 @@ public class ContactFragment extends Fragment{
             ContactArray.add(contactListModel);
         }
     }
-
 }

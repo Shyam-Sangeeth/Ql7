@@ -18,7 +18,6 @@ public class TechCulSel extends AppCompatActivity {
         imageViewTech.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new Common().tech=true;
                 Intent intent=new Intent(TechCulSel.this,MainActivity.class);
                 startActivity(intent);
             }
@@ -26,7 +25,6 @@ public class TechCulSel extends AppCompatActivity {
         imageViewSaptak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new Common().tech=false;
                 Intent intent=new Intent(TechCulSel.this,MainActivity.class);
                 startActivity(intent);
             }

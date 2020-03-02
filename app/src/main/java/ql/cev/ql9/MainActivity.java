@@ -7,7 +7,6 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.Toast;
-
 import ql.cev.ql9.Fragments.AboutFragment;
 import ql.cev.ql9.Fragments.ContactFragment;
 import ql.cev.ql9.Fragments.HomeFragment;
@@ -59,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) { super.onBackPressed();return; }
+        if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) { super.onBackPressed(); }
         else { Toast.makeText(getBaseContext(), "Tap back button in order to exit", Toast.LENGTH_SHORT).show(); }
         mBackPressed = System.currentTimeMillis();
     }

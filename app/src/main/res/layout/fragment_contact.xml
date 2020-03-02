@@ -12,12 +12,10 @@
         android:textSize="16sp"
         android:textStyle="bold"
         android:textColor="@color/cardview_light_background"
-        android:text="Feel Free to Contact Us"
-        />
+        android:text="@string/feel_free_to_contact_us" />
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-
         android:background="@color/colorAccent"/>
     <TextView
         android:layout_width="match_parent"
@@ -27,21 +25,14 @@
         android:textSize="17sp"
         android:textStyle="bold"
         android:textColor="@color/cardview_light_background"
-        android:text="STUDENT UNION"
-        />
+        android:text="@string/student_union" />
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-
         android:background="@color/colorAccent"/>
-
     <ListView
         android:id="@+id/contact_list_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
-
-
-
-
 </LinearLayout>
