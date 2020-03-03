@@ -15,6 +15,7 @@ import android.widget.TextView;
 import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 import ql.cev.ql9.CevCornerActivity;
+import ql.cev.ql9.Common;
 import ql.cev.ql9.CompetitionActivity;
 import ql.cev.ql9.CostumGridAdapter;
 import ql.cev.ql9.ProshowActivity;
@@ -35,16 +36,14 @@ public class HomeFragment extends Fragment {
             "SCHEDULE",
             "CEV CORNER",
             "RESULTS"
-
     } ;
     private int[] imageId = {
-            R.drawable.competition,
-            R.drawable.workshop,
-            R.drawable.proshow,
+            R.drawable.competetion,
+            R.drawable.workshops,
+            R.drawable.proshows,
             R.drawable.schedule,
-            R.drawable.cevcorner,
-            R.drawable.result
-
+            R.drawable.cev_corner,
+            R.drawable.results
     };
     @Nullable
     @Override
@@ -52,14 +51,36 @@ public class HomeFragment extends Fragment {
         View view =inflater.inflate(R.layout.fragment_home,container,false);
         GridView grid = view.findViewById(R.id.grid);
         flpr= view.findViewById(R.id.flp);
+        if(!Common.tech){
+            web=new String[]{
+                    "COMPETITIONS",
+                    "ARTS RESULT",
+                    "PROSHOWS",
+                    "SCHEDULE",
+                    "CEV CORNER",
+                    "RESULTS"
+            };
+            imageId=new int[]{
+                    R.drawable.competetion,
+                    R.drawable.artscompetition,
+                    R.drawable.proshows,
+                    R.drawable.schedule,
+                    R.drawable.cev_corner,
+                    R.drawable.results
+            };
+        }
         setLayout();
         counDown= view.findViewById(R.id.counterv);
         Calendar start_calendar = Calendar.getInstance();
         Calendar end_calendar = Calendar.getInstance();
-        end_calendar.set(2019, 2, 21);
-        long start_millis = start_calendar.getTimeInMillis(); //get the start time in milliseconds
-        long end_millis = end_calendar.getTimeInMillis(); //get the end time in milliseconds
-        long total_millis = (end_millis - start_millis); //total time in milliseconds
+        //Shyam : Note that in calender fn month starts with 0
+        if(Common.tech)
+            end_calendar.set(2020, 2, 22);
+        else
+            end_calendar.set(2019, 2, 21);
+        long start_millis = start_calendar.getTimeInMillis();
+        long end_millis = end_calendar.getTimeInMillis();
+        long total_millis = (end_millis - start_millis);
         CountDownTimer cdt = new CountDownTimer(total_millis, 1000) {
             @SuppressLint("SetTextI18n")
             @Override
@@ -71,7 +92,7 @@ public class HomeFragment extends Fragment {
                 long minutes = TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished);
                 millisUntilFinished -= TimeUnit.MINUTES.toMillis(minutes);
                 long seconds = TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished);
-                counDown.setText(days + " Days : "+ hours + " Hours : " + minutes + " Minutes : " + seconds+" Seconds"); //You can compute the millisUntilFinished on hours/minutes/seconds
+                counDown.setText(days + " Days : "+ hours + " Hours : " + minutes + " Minutes : " + seconds+" Seconds");
             }
             @SuppressLint("SetTextI18n")
             @Override
@@ -108,7 +129,6 @@ public class HomeFragment extends Fragment {
                     Intent intent=new Intent(getActivity(), ResultActivity.class);
                     startActivity(intent);
                 }
-
             }
         });
         return view;

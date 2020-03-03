@@ -1,5 +1,5 @@
 package ql.cev.ql9;
 
 public class Common {
-    public boolean tech;
+    public static boolean tech;
 }

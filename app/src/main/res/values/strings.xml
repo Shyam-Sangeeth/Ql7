@@ -24,4 +24,13 @@
     <string name="write_something">Write something....</string>
     <string name="post">POST</string>
     <string name="post_your_image">POST YOUR IMAGE</string>
+    <string name="password">Password</string>
+    <string name="no_account_sign_up">No account ? Sign Up</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="email">Email</string>
+    <string name="cev_corner">CEV CORNER</string>
+    <string name="already_registered_login">Already registered ? Login</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="username">Username</string>
 </resources>

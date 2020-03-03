@@ -1,5 +1,6 @@
 package ql.cev.ql9;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,64 +8,47 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 public class CostumGridAdapter extends BaseAdapter{
     private Context mContext;
     private final String[] web;
     private final int[] Imageid;
-
     public CostumGridAdapter(Context c, String[] web, int[] Imageid ) {
         mContext = c;
         this.Imageid = Imageid;
         this.web = web;
     }
-
     @Override
     public int getCount() {
-        // TODO Auto-generated method stub
         return web.length;
     }
-
     @Override
     public Object getItem(int position) {
-        // TODO Auto-generated method stub
         return null;
     }
-
     @Override
     public long getItemId(int position) {
-        // TODO Auto-generated method stub
         return 0;
     }
-
+    @SuppressLint("InflateParams")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // TODO Auto-generated method stub
         View grid;
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
         if (convertView == null) {
-
-            grid = new View(mContext);
+            assert inflater != null;
             grid = inflater.inflate(R.layout.home_grids, null);
-            TextView textView = (TextView) grid.findViewById(R.id.grid_text);
-            ImageView imageView = (ImageView)grid.findViewById(R.id.grid_image);
+            TextView textView = grid.findViewById(R.id.grid_text);
+            ImageView imageView = grid.findViewById(R.id.grid_image);
             textView.setText(web[position]);
-          //  imageView.setImageResource(Imageid[position]);
-         //   String url = myUrls.get(position);
-
-            Glide.with(imageView.getContext())
+            Picasso.with(imageView.getContext())
                     .load(Imageid[position])
                     .into(imageView);
-
-
         } else {
-            grid = (View) convertView;
+            grid = convertView;
         }
-
         return grid;
     }
 }

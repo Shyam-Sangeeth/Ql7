@@ -2,7 +2,6 @@ package ql.cev.ql9.Fragments;
 
 import android.app.Fragment;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -90,9 +89,8 @@ public class ContactFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_contact,container,false);
         setListData();
-        Resources resources=getResources();
         ListView listview = view.findViewById(R.id.contact_list_view);
-        ContactAdapter contactAdapter=new ContactAdapter(getActivity(),ContactArray,resources);
+        ContactAdapter contactAdapter=new ContactAdapter(getActivity(),ContactArray);
         listview.setAdapter(contactAdapter);
         listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override

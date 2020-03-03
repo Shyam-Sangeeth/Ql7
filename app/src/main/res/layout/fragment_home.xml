@@ -30,7 +30,8 @@
         android:numColumns="3"
         android:gravity="center"
         android:columnWidth="100dp"
-         android:layout_marginTop="10dp"
+        android:verticalSpacing="10dp"
+        android:layout_marginTop="10dp"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/grid" />

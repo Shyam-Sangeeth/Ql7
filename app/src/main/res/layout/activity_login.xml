@@ -12,13 +12,14 @@
         android:orientation="vertical"
         android:layout_margin="10dp"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        tools:ignore="UselessParent">
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            android:src="@drawable/cevcorner"
-            android:contentDescription="TODO" />
+            android:src="@drawable/cev_corner"
+            tools:ignore="ContentDescription" />
         <TextView
             android:layout_gravity="center"
             android:layout_margin="16dp"
@@ -29,44 +30,39 @@
             android:fontFamily="serif"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CEV CORNER"/>
-
+            android:text="@string/cev_corner"/>
         <EditText
-
             android:layout_margin="8dp"
             android:id="@+id/login_email"
             android:padding="16dp"
             android:inputType="textEmailAddress|textNoSuggestions"
             android:textColor="@color/cardview_light_background"
-            android:hint="Email"
+            android:hint="@string/email"
             android:textColorHint="@color/nav_icon"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:importantForAutofill="no" />
         <EditText
-
             android:layout_margin="8dp"
             android:id="@+id/login_password"
             android:padding="16dp"
             android:inputType="textPassword"
             android:textColor="@color/cardview_light_background"
-            android:hint="Password"
+            android:hint="@string/password"
             android:textColorHint="@color/nav_icon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:ignore="TextFields" />
-
-
-
+            tools:ignore="TextFields"
+            android:importantForAutofill="no" />
         <Button
             android:id="@+id/loginBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="SIGN IN"
+            android:text="@string/sign_in"
             android:fontFamily="serif"
             android:textColor="#000"
             android:layout_gravity="center"/>
-
         <TextView
             android:id="@+id/signUpTxtView"
             android:layout_gravity="center"
@@ -77,7 +73,7 @@
             android:maxLines="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No account ? Sign Up"/>
+            android:text="@string/no_account_sign_up"/>
         <TextView
             android:id="@+id/Forgot"
             android:layout_gravity="center"
@@ -88,12 +84,6 @@
             android:maxLines="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Forgot Password"/>
-
-
+            android:text="@string/forgot_password"/>
     </LinearLayout>
-
-
-
-
 </RelativeLayout>

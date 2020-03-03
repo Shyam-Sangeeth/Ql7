@@ -114,8 +114,10 @@ public class CevCornerActivity extends AppCompatActivity {
                         File file = getApplicationContext().getFileStreamPath("my_image.jpeg");
                         String imageFullPath = file.getAbsolutePath();
                         Intent imageIntent = new Intent(Intent.ACTION_SEND);
+                        imageIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         Uri imageUri = Uri.parse(imageFullPath);
                         imageIntent.setType("image/jpeg");
+                        imageIntent.putExtra(Intent.EXTRA_TEXT,"Share image...");
                         imageIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
                         startActivity(imageIntent);
                     }
@@ -127,7 +129,7 @@ public class CevCornerActivity extends AppCompatActivity {
                         if (post_user.equals(current_user)){
                             AlertDialog.Builder alertDialog = new AlertDialog.Builder(CevCornerActivity.this);
                             alertDialog.setTitle("DELETE");
-                            alertDialog.setMessage("Are you sure want to delete this post ?");
+                            alertDialog.setMessage("Are you sure want to delete this post?");
                             alertDialog.setIcon(R.drawable.delete);
                             alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,int which) {
@@ -163,6 +165,7 @@ public class CevCornerActivity extends AppCompatActivity {
     }
     public void Logout(View view){
         mAuth.signOut();
+        finish();
     }
     public static class BlogzoneViewHolder extends RecyclerView.ViewHolder {
         View mView;
@@ -177,15 +180,15 @@ public class CevCornerActivity extends AppCompatActivity {
             TextView post_title = mView.findViewById(R.id.event_name);
             post_title.setText(title);
         }
-        public void setDesc(String desc) {
+        void setDesc(String desc) {
             TextView post_desc = mView.findViewById(R.id.result_date_time);
             post_desc.setText(desc);
         }
-        public void setImageUrl(Context ctx, String imageUrl) {
+        void setImageUrl(Context ctx, String imageUrl) {
             ImageView post_image = mView.findViewById(R.id.post_my_image);
-            Picasso.with(post_image.getContext()).load(imageUrl).into(post_image);
+            Picasso.with(ctx).load(imageUrl).into(post_image);
         }
-        public void setUserName(String userName) {
+        void setUserName(String userName) {
             TextView postUserName = mView.findViewById(R.id.post_user);
             postUserName.setText(userName);
         }
@@ -199,8 +202,7 @@ public class CevCornerActivity extends AppCompatActivity {
                 bitmap = BitmapFactory.decodeStream(inputStream);
                 inputStream.close();
             } catch (Exception e) {
-                String TAG = "DownloadImage";
-                Log.d(TAG, "Exception 1, Something went wrong!");
+                Log.e("DownloadImage", "Exception 1, Something went wrong!");
                 e.printStackTrace();
             }
             return bitmap;
@@ -210,20 +212,17 @@ public class CevCornerActivity extends AppCompatActivity {
             return downloadImageBitmap(params[0]);
         }
         protected void onPostExecute(Bitmap result) {
-            Toast.makeText(CevCornerActivity.this,"downloaded",Toast.LENGTH_SHORT).show();
             saveImage(getApplicationContext(), result, "my_image.jpeg");
         }
     }
-    @SuppressLint("WorldReadableFiles")
     public void saveImage(Context context, Bitmap b, String imageName) {
         FileOutputStream foStream;
         try {
-            foStream = context.openFileOutput(imageName, Context.MODE_WORLD_READABLE);
+            foStream = context.openFileOutput(imageName, Context.MODE_PRIVATE);
             b.compress(Bitmap.CompressFormat.JPEG, 100, foStream);
             foStream.close();
-            Toast.makeText(CevCornerActivity.this,"saved",Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
-            Log.d("saveImage", "Exception 2, Something went wrong!");
+            Log.e("SaveImage", "Exception 2, Something went wrong!");
             e.printStackTrace();
         }
     }

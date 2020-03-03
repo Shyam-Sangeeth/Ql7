@@ -58,12 +58,10 @@ public class PostActivity extends AppCompatActivity {
         mDatabaseUsers= FirebaseDatabase.getInstance().getReference().child("Users");
         FirebaseAuth mauth = FirebaseAuth.getInstance();
         mCurrentUser= mauth.getCurrentUser();
-
         if (str.equals("result")||str.equals("schedule")){
             imageBtn.setVisibility(View.INVISIBLE);
             check=1;
         }
-
         imageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,18 +76,15 @@ public class PostActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                    final String PostDec=textDesc.getText().toString().trim();{
-
-                                Toast.makeText(getApplicationContext(),"Succesfull upload",Toast.LENGTH_SHORT).show();
-                                final DatabaseReference newPost = databaseRef.push();
-
-                                mDatabaseUsers.addValueEventListener(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(DataSnapshot dataSnapshot) {
-                                        newPost.child("desc").setValue(PostDec);
-                                    }
-                                    @Override
-                                    public void onCancelled(DatabaseError databaseError) { }
-                                });
+                       Toast.makeText(getApplicationContext(),"Succesfull upload",Toast.LENGTH_SHORT).show();
+                       final DatabaseReference newPost = databaseRef.push();
+                       mDatabaseUsers.addValueEventListener(new ValueEventListener() {
+                           @Override
+                           public void onDataChange(DataSnapshot dataSnapshot) {
+                               newPost.child("desc").setValue(PostDec);
+                           }
+                           @Override
+                           public void onCancelled(DatabaseError databaseError) { }});
                    }
                     }
             });

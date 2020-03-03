@@ -1,18 +1,7 @@
 package ql.cev.ql9;
 
-
 public class Blog {
-
     private String title, desc, imageUrl, username,email;
-
-
-
-
-
-
-
-
-
     public Blog(String title, String desc, String imageUrl, String username, String email) {
         this.title = title;
         this.desc = desc;
@@ -23,33 +12,17 @@ public class Blog {
     public String getEmail() {
         return email;
     }
-
-
-
-    public Blog() {
-    }
-
-
-
+    public Blog() { }
     public String getUsername() {
         return username;
     }
-
-
-
-
-
     public String getImageUrl() {
         return imageUrl;
     }
-
     public String getTitle() {
         return title;
     }
-
     public String getDesc() {
         return desc;
     }
-
-
 }
