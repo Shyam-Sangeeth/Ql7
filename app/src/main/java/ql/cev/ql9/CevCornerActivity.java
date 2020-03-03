@@ -8,8 +8,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -108,18 +110,19 @@ public class CevCornerActivity extends AppCompatActivity {
                     viewHolder.delete.setVisibility(View.INVISIBLE);
                 }
                 viewHolder.share.setOnClickListener(new View.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                     @Override
                     public void onClick(View view) {
                         new DownloadImage().execute(model.getImageUrl());
-                        File file = getApplicationContext().getFileStreamPath("my_image.jpeg");
-                        String imageFullPath = file.getAbsolutePath();
+                        File file = getApplicationContext().getFileStreamPath("my_image.png");
+                        Uri imageUri = Uri.parse(file.getAbsolutePath());
+                        if(file.canRead() && file.exists()){
+                            Toast.makeText(CevCornerActivity.this, "File fetched successfully", Toast.LENGTH_SHORT).show();
+                        }
                         Intent imageIntent = new Intent(Intent.ACTION_SEND);
-                        imageIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        Uri imageUri = Uri.parse(imageFullPath);
-                        imageIntent.setType("image/jpeg");
-                        imageIntent.putExtra(Intent.EXTRA_TEXT,"Share image...");
-                        imageIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
-                        startActivity(imageIntent);
+                        imageIntent.setType("image/png");
+                        imageIntent.putExtra(Intent.EXTRA_STREAM,imageUri);
+                        startActivity(Intent.createChooser(imageIntent,"Share..."));
                     }
                 });
                 viewHolder.delete.setOnClickListener(new View.OnClickListener() {
@@ -155,7 +158,6 @@ public class CevCornerActivity extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         return super.onOptionsItemSelected(item);
     }
     public void PostMyPhoto(View view) {
@@ -165,7 +167,6 @@ public class CevCornerActivity extends AppCompatActivity {
     }
     public void Logout(View view){
         mAuth.signOut();
-        finish();
     }
     public static class BlogzoneViewHolder extends RecyclerView.ViewHolder {
         View mView;
@@ -173,7 +174,6 @@ public class CevCornerActivity extends AppCompatActivity {
         ScaleImageView imageView;
         public BlogzoneViewHolder(View itemView) {
             super(itemView);
-
             mView = itemView;
         }
         public void setTitle(String title) {
@@ -212,14 +212,14 @@ public class CevCornerActivity extends AppCompatActivity {
             return downloadImageBitmap(params[0]);
         }
         protected void onPostExecute(Bitmap result) {
-            saveImage(getApplicationContext(), result, "my_image.jpeg");
+            saveImage(getApplicationContext(), result, "my_image.png");
         }
     }
     public void saveImage(Context context, Bitmap b, String imageName) {
         FileOutputStream foStream;
         try {
             foStream = context.openFileOutput(imageName, Context.MODE_PRIVATE);
-            b.compress(Bitmap.CompressFormat.JPEG, 100, foStream);
+            b.compress(Bitmap.CompressFormat.PNG, 100, foStream);
             foStream.close();
         } catch (Exception e) {
             Log.e("SaveImage", "Exception 2, Something went wrong!");
