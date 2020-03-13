@@ -81,7 +81,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     public void onComplete(@NonNull Task<AuthResult> task) {
                                         String user_id = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
                                         if (user_id.equals(NULL)){
-                                            Toast.makeText(RegisterActivity.this, "invalid email", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(RegisterActivity.this, "Invalid email", Toast.LENGTH_SHORT).show();
                                         }
                                         else {
                                             DatabaseReference current_user_db = mDatabase.child(user_id);

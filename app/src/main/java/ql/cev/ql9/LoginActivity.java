@@ -97,7 +97,6 @@ public class LoginActivity extends AppCompatActivity {
                                 })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-
                                 dialog.cancel();
                             }
                         });
